@@ -1,8 +1,7 @@
 import React from 'react';
 import { AppLoading, Font } from 'expo';
 import { Ionicons } from '@expo/vector-icons';
-import { StyleSheet, Text, View } from 'react-native';
-
+import TapNavigation from './navigation/TapNavigation';
 export default class App extends React.Component {
 	state = {
 		loaded: true,
@@ -21,9 +20,7 @@ export default class App extends React.Component {
 		const { loaded } = this.state;
 		if (loaded) {
 			return (
-				<View style={StyleSheet.container}>
-					<Text>Open up App.js to start working on your app!</Text>
-				</View>
+			<TapNavigation />
 			);
 		} else {
 			return <AppLoading startAsync={this.loadAssets} onFinish={this.handleLoaded} onError={this.handleError} />;
