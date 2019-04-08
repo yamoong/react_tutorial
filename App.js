@@ -1,7 +1,7 @@
 import React from 'react';
-import { AppLoading, Font } from 'expo';
-import { Ionicons } from '@expo/vector-icons';
-import TapNavigation from './navigation/TapNavigation';
+import { AppLoading, Font } from "expo";
+import { Ionicons } from "@expo/vector-icons";
+import TapNavigation from "./navigation/TapNavigation";
 export default class App extends React.Component {
 	state = {
 		loaded: true,
