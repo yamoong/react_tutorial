@@ -1,16 +1,18 @@
 import React from "react";
 import { Platform } from "react-native";
-import { createBottomTabNavigator, createAppContainer } from "react-navigation";
+import { createBottomTabNavigator, createAppContainer, createStackNavigator } from "react-navigation";
 import MoviesScreen from "../screens/movies";
 import TVScreen from "../screens/TV";
 import SearchScreen from "../screens/search";
 import { BG_COLOR } from "../constants/Colors";
 import TabBarIcon from "../components/TabBarIcon";
+import { createStack } from "./config";
 
 const TabNavigation = createBottomTabNavigator(
     {
         Movie: {
-            screen: MoviesScreen,
+            screen: createStack(MoviesScreen, "movies"),
+            
             navigationOptions: {
                 tabBarIcon: ({ focused }) => (
                     <TabBarIcon
@@ -21,7 +23,7 @@ const TabNavigation = createBottomTabNavigator(
             }
         },
         TV: {
-            screen: TVScreen,
+            screen: createStack(TVScreen, "TV"),
             navigationOptions: {
                 tabBarIcon: ({ focused }) => (
                     <TabBarIcon
@@ -32,7 +34,7 @@ const TabNavigation = createBottomTabNavigator(
             }
         },
         Search: {
-            screen: SearchScreen,
+            screen: createStack(SearchScreen, "search"),
             navigationOptions: {
                 tabBarIcon: ({ focused }) => (
                     <TabBarIcon
