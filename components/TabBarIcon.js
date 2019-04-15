@@ -1,3 +1,4 @@
+
 import React from "react";
 import PropTypes from "prop-types";
 import { Ionicons } from "@expo/vector-icons/build/Icons";
@@ -17,3 +18,4 @@ TabBarIcon.propTypes = {
 };
 
 export default TabBarIcon;
+

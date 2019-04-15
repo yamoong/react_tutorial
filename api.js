@@ -1,23 +1,20 @@
 import axios from "axios";
 
 const api = axios.create({
-    baseURL: ,
+    baseURL: "https://api.themoviedb.org/3/",
     params: {
         api_key:"a8239743a7c223ac6bbf132de3aec270",
         language: "en-US"
     }
 });
 
-export const moviesApi = {
-    nowPlaying: () => api.get("movie/now_playing"),
-    upcoming: () => api.get("movie/upcoming"),
-    popular: () => api.get("movie/popular"),
-    movieDetail: id => api.get(`movie/${id}`, {
-        params: {
-            append_to_response: "videos"
-        }
-    }),
-    search: term => 
+export const movies = {
+    getMovie: id =>
+        api.get(`movie/${id}`, { params: { append_to_response: "videos" } }),
+    getUpcoming: () => api.get("movie/upcoming"),
+    getPopular: () => api.get("movie/popular"),
+    getNowPlaying: () => api.get("movie/now_playing"),
+    searchMovies: term =>
         api.get("search/movie", {
             params: {
                 query: encodeURIComponent(term)
@@ -25,17 +22,13 @@ export const moviesApi = {
         })
 };
 
-export const tvApi = {
-    topRated: () => api.get("tv/top_rated"),
-    popular: () => api.get("tv/popular"),
-    airingToday: () =>  api.get("tv/airing_today"),
-    showDetail: id => 
-        api.get(`tv/${id}`, {
-            params:{
-                append_to_response:"videos"
-            }
-        }),
-    search: term =>
+export const tv = {
+    getShow: id =>
+        api.get(`tv/${id}`, { params: { append_to_response: "videos" } }),
+    getPopular: () => api.get("tv/popular"),
+    getAiringThisWeek: () => api.get("tv/top_rated"),
+    getAiringToday: () => api.get("tv/airing_today"),
+    searchTv: term =>
         api.get("search/tv", {
             params: {
                 query: encodeURIComponent(term)
