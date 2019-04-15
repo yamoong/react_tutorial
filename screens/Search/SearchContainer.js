@@ -1,12 +1,13 @@
 import React from "react";
 import SearchPresenter from "./SearchPresenter";
-
+import { movies, tv } from "../../api";
 export default class SearchContainer extends React.Component {
     state = {
         loading: false,
         movieResults: null,
         tvResults: null,
-        searchTerm: ""
+        searchTerm: "",
+        error:null
     };
 
     handleSearchUpdate = text => {
@@ -15,12 +16,60 @@ export default class SearchContainer extends React.Component {
         });
     };
 
-    onSubmitEditing = () => {
+    // onSubmitEditing = async () => {
+    //     const { searchTerm } = this.state;
+    //     if (searchTerm !== "") {
+    //         let movieResults, tvResults, error;
+    //         this.setState({
+    //             loading:true
+    //         });
+    //         try {
+    //             ({
+    //                 data: { results: movieResults } 
+    //             } = await movies.searchMovies(searchTerm));
+    //             ({
+    //                 data: { results: tvResults }
+    //             } = await tv.searchTv(searchTerm));
+    //         } catch {
+    //             error = "Can't Search";
+    //         } finally {
+    //             this.setState = ({
+    //                 loading:false,
+    //                 movieResults,
+    //                 tvResults,
+    //                 error
+    //             });
+    //         } 
+    //     }
+    //     return;
+    // };
+
+    onSubmitEditing = async () => {
         const { searchTerm } = this.state;
         if (searchTerm !== "") {
-            alert("Searching");
-            return;
+            let movieResults, tvResults, error;
+            this.setState({
+                loading: true
+            });
+            try {
+                ({
+                    data: { results: movieResults }
+                } = await movies.searchMovies(searchTerm));
+                ({
+                    data: { results: tvResults }
+                } = await tv.searchTv(searchTerm));
+            } catch {
+                error = "Can't search";
+            } finally {
+                this.setState({
+                    loading: false,
+                    movieResults,
+                    tvResults,
+                    error
+                });
+            }
         }
+        return;
     };
 
     render() {
