@@ -7,6 +7,7 @@ import Loader from "../../components/Loader";
 import Section from "../../components/Section";
 import MovieItem from "../../components/MovieItem";
 
+
 const Container = styled.View`
     flex: 1;
     background-color:${BG_COLOR};
@@ -69,6 +70,7 @@ const SearchPresenter = ({
                                             title={movie.title}
                                             overview={movie.overview}
                                             voteAvg={movie.vote_average}
+                                            isMovie={false}
                                         />
                                     ))}
 

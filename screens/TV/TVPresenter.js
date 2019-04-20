@@ -29,6 +29,7 @@ const TVPresenter = ({ loading, popular, airingThisWeek, airingToday }) =>
                                 posterPhoto={tv.poster_path}
                                 title={tv.name}
                                 voteAvg={tv.vote_average}
+                                
                             />
                         ))}
                 </Section>
